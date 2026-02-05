@@ -26,5 +26,6 @@ public class Rq {
         if (cmd.equals("목록?keywordType=title")) {
             return "title";
         }
+        return "";
     }
 }
