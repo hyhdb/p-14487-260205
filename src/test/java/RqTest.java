@@ -57,7 +57,7 @@ public class RqTest {
     void t6() {
 
         Rq rq = new Rq("목록?page=1");
-        int rst = rq.getParamAsInt("page");
+        int rst = rq.getParamAsInt("page", -1);
         assertThat(rst).isEqualTo(1);
     }
 
@@ -66,7 +66,7 @@ public class RqTest {
     void t7() {
 
         Rq rq = new Rq("목록?page=10");
-        int rst = rq.getParamAsInt("page");
+        int rst = rq.getParamAsInt("page", -1);
         assertThat(rst).isEqualTo(10);
     }
 
@@ -77,5 +77,14 @@ public class RqTest {
         Rq rq = new Rq("목록?keyword=자바&keywordType=title&page=1");
         String rst = rq.getParam("keywordType");
         assertThat(rst).isEqualTo("title");
+    }
+
+    @Test
+    @DisplayName(value = "명령: 삭제?id=aaa 일때, rq.getParam(\"id\", -1) -> 1")
+    void t9() {
+
+        Rq rq = new Rq("삭제?id=aaa");
+        int rst = rq.getParamAsInt("id", -1);
+        assertThat(rst).isEqualTo(-1);
     }
 }
